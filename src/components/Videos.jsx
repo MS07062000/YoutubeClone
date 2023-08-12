@@ -9,14 +9,15 @@ const Videos = ({ videos }) => {
             justifyContent='start'
             gap={2}
         >
-            {videos.map((item,index)=>{
+            {videos.map((item,index)=>(
                 <Box key={index}>
-                    {item.index.videoId && <VideoCard video={item}/>}
-                    {item.index.channelId && <ChannelCard video={item}/>}
+                    {item.id.videoId && <VideoCard video={item}/>}
+                    {item.id.playlistId && <VideoCard video={item}/>}
+                    {item.id.channelId && <ChannelCard channelDetail={item}/>}
                 </Box>
-            })}
+            ))}
         </Stack>
     )
 }
 
-export default Videos
+export default Videos;
