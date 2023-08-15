@@ -9,7 +9,7 @@ const App = () => {
         <Navbar/>
         <Routes>
             <Route path='/' exact element ={<Feed/>}/>
-            <Route path='/video/:videoId' element={<VideoDetail/>}/>
+            <Route path='/video/:videoId/:channelId' element={<VideoDetail/>}/>
             <Route path='/channel/:channelId' element={<ChannelDetail/>}/>
             <Route path='/search/:searchTerm' element={<SearchFeed/>}/>
         </Routes>

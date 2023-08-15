@@ -15,12 +15,12 @@ const VideoCard = ({ video: { id: { videoId }, snippet } }) => {
 
   return (
     <Card sx={{width:{md:'320px', xs:'100%'},boxShadow:'none',borderRadius:2}}>
-      <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
+      <Link to={videoId ? `/video/${videoId}/${snippet.channelId}` : demoVideoUrl}>
         <CardMedia image={image}
           alt={snippet && snippet.title ? snippet.title : demoVideoTitle}
           sx={{ width: { xs: '100%'}, height: '180px' }} />
         <CardContent sx={{ backgroundColor: '#1e1e1e', height: '106px' }}>
-          <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
+          <Link to={videoId ? `/video/${videoId}/${snippet.channelId}` : demoVideoUrl}>
             <Typography variant="subtitle1" fontWeight="bold" color="#FFF">
               {snippet && snippet.title ? snippet.title.slice(0,60) : demoVideoTitle.slice(0,60)}
             </Typography>
