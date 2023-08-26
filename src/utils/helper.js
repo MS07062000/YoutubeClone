@@ -25,13 +25,14 @@ function calculateTimeDifference(dateTime) {
   const yearsAgo = now.diff(targetDateTime, 'years');
   const daysAgo = now.diff(targetDateTime, 'days');
   const hoursAgo = now.diff(targetDateTime, 'hours');
+  const minutesAgo = now.diff(targetDateTime, 'minutes');
   const secondsAgo = now.diff(targetDateTime, 'seconds');
-  return { yearsAgo, daysAgo, hoursAgo, secondsAgo };
+  return { yearsAgo, daysAgo, hoursAgo, minutesAgo, secondsAgo };
 }
 
 
 export function getTimeAgoString(dateTime) {
-  const { yearsAgo, daysAgo, hoursAgo, secondsAgo } = calculateTimeDifference(dateTime);
+  const { yearsAgo, daysAgo, hoursAgo, minutesAgo, secondsAgo } = calculateTimeDifference(dateTime);
 
   if (yearsAgo > 0) {
     return `${yearsAgo} ${yearsAgo === 1 ? 'year' : 'years'} ago`;
@@ -39,6 +40,8 @@ export function getTimeAgoString(dateTime) {
     return `${daysAgo} ${daysAgo === 1 ? 'day' : 'days'} ago`;
   } else if (hoursAgo > 0) {
     return `${hoursAgo} ${hoursAgo === 1 ? 'hour' : 'hours'} ago`;
+  } else if (minutesAgo > 0 ){
+    return `${minutesAgo} ${minutesAgo === 1 ? 'minute' : 'minutes'} ago`;
   } else {
     return `${secondsAgo} ${secondsAgo === 1 ? 'second' : 'seconds'} ago`;
   }

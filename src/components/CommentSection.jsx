@@ -66,8 +66,8 @@ const Comment = ({ commentInfo }) => {
             {commentAuthorName}
             <span
               style={{
-                marginLeft:'5px',
-                fontFamily: 'Roboto, Arial, sans-serif',
+                marginLeft: '5px',
+                fontFamily: '"Roboto", "Arial", sans-serif',
                 fontSize: '0.9rem',
                 lineHeight: '1.8rem',
                 fontWeight: 400,
@@ -85,7 +85,7 @@ const Comment = ({ commentInfo }) => {
             WebkitLineClamp: expanded ? 'unset' : 3,
             WebkitBoxOrient: 'vertical',
             overflow: 'hidden',
-            fontFamily: 'Roboto, Arial, sans-serif',
+            fontFamily: '"Roboto", "Arial", sans-serif',
             fontSize: '1.05rem',
             lineHeight: '1.8rem',
             fontWeight: 400,
@@ -113,7 +113,7 @@ const Comment = ({ commentInfo }) => {
             <span
               style={{
                 ml: 0.5,
-                fontFamily: 'Roboto, Arial, sans-serif',
+                fontFamily: '"Roboto", "Arial", sans-serif',
                 fontSize: '1rem',
                 lineHeight: '1.8rem',
                 fontWeight: 400,
@@ -125,7 +125,7 @@ const Comment = ({ commentInfo }) => {
           <IconButton aria-label='ThumbDownOffAlt' sx={{ color: 'white' }}>
             <ThumbDownOffAltIcon />
           </IconButton>
-          <Button sx={{color:'white'}}>Reply</Button>
+          <Button sx={{ color: 'white' }}>Reply</Button>
         </Stack>
       </Stack>
     </Stack>

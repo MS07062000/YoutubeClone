@@ -12,7 +12,7 @@ import {
   ThumbDownOutlined,
   CheckCircle,
 } from '@mui/icons-material';
-import ReactPlayer from 'react-player/youtube';
+import ReactPlayer from 'react-player';
 import { Link, useParams } from 'react-router-dom';
 import { fetchFromAPI } from '../utils/fetchFromApi';
 import { Videos, Loader, CommentSection } from './';
@@ -103,11 +103,12 @@ const VideoDetail = () => {
     handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
-  });
+  }, [videoDescriptionRef]);
 
   if (videoInfo.videoDetails === null && videoInfo.channelDetails === null) {
     return <Loader />;
   } else {
+    console.log(isClamped);
     console.log(videoInfo);
     const {
       snippet: {
@@ -127,18 +128,20 @@ const VideoDetail = () => {
 
     return (
       <Box minHeight="95vh">
-        <Stack direction={{ xs: "column", md: "row" , gap:3}}>
-          <Box flex={2}>
+        <Stack direction={{ xs: "column", md: "row", gap: 3 }}>
+          <Box>
             <Box
               sx={{
                 width: '100%',
               }}
             >
-              <ReactPlayer style={{marginLeft:'16px',marginRight:'16px'}}
-                url={`https://www.youtube.com/watch?v=${videoId}`}
-                className="react-player"
-                controls
-              />
+              <Box sx={{ mx: 2, mt:1}}>
+                <ReactPlayer
+                  url={`https://www.youtube.com/watch?v=${videoId}`}
+                  className="react-player"
+                  controls
+                />
+              </Box>
               <Typography
                 color="#fff"
                 variant="h5"
@@ -269,25 +272,35 @@ const VideoDetail = () => {
                   </Button>
                 )}
               </Box>
-              <Box
-                px={2}
-                py={{ md: 1, xs: 5 }}
-                justifyContent="center"
-                alignItems="center"
-              >
-                <CommentSection videoComments={videoInfo.videoComments} />
-              </Box>
+
+              {videoInfo.videoComments != null && (<><Typography sx={{
+                color: 'white',
+                fontSize: '1.7rem',
+                fontFamily: '"Roboto", "Arial", sans-serif',
+                lineHeight: '2.8rem',
+                fontWeight: 700,
+                marginTop: '1rem',
+                marginLeft:'16px'
+              }}>{videoInfo.videoComments.length}{" "}Comments</Typography>
+                <Box
+                  px={2}
+                  py={{ md: 1, xs: 2 }}
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <CommentSection videoComments={videoInfo.videoComments} />
+                </Box></>)}
             </Box>
 
           </Box>
-          <Box flex={1}
+          {videoInfo.relatedVideos != null && <Box
             px={2}
             py={{ md: 1, xs: 5 }}
             justifyContent="center"
             alignItems="center"
           >
-            <Videos videos={videoInfo.relatedVideos} />
-          </Box>
+            <Videos videos={videoInfo.relatedVideos} direction='column' />
+          </Box>}
         </Stack>
       </Box>
     );
