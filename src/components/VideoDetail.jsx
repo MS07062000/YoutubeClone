@@ -5,7 +5,9 @@ import {
   Divider,
   Avatar,
   Stack,
+  Card,
   Typography,
+  IconButton
 } from '@mui/material';
 import {
   ThumbUpOutlined,
@@ -135,7 +137,7 @@ const VideoDetail = () => {
                 width: '100%',
               }}
             >
-              <Box sx={{ mx: 2, mt:1}}>
+              <Box sx={{ mx: 2, mt: 1 }}>
                 <ReactPlayer
                   url={`https://www.youtube.com/watch?v=${videoId}`}
                   className="react-player"
@@ -156,6 +158,10 @@ const VideoDetail = () => {
                 color="white"
                 py={1}
                 px={2}
+                sx={{
+                  alignItems: {xs:'flex-start',lg:'center'},
+                  flexDirection: {xs:'column',lg:'row'}
+                }}
               >
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Avatar src={channelImage} />
@@ -272,7 +278,6 @@ const VideoDetail = () => {
                   </Button>
                 )}
               </Box>
-
               {videoInfo.videoComments != null && (<><Typography sx={{
                 color: 'white',
                 fontSize: '1.7rem',
@@ -280,18 +285,22 @@ const VideoDetail = () => {
                 lineHeight: '2.8rem',
                 fontWeight: 700,
                 marginTop: '1rem',
-                marginLeft:'16px'
+                marginLeft: '16px'
               }}>{videoInfo.videoComments.length}{" "}Comments</Typography>
                 <Box
                   px={2}
                   py={{ md: 1, xs: 2 }}
                   justifyContent="center"
                   alignItems="center"
+                  sx={{
+                    overflowY: { xs: 'scroll', lg: 'hidden' },
+                    overflowX:'hidden'
+                  }}
+                  height={{ xs: '250px', lg: 'auto' }}
                 >
                   <CommentSection videoComments={videoInfo.videoComments} />
                 </Box></>)}
             </Box>
-
           </Box>
           {videoInfo.relatedVideos != null && <Box
             px={2}

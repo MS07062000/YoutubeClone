@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Avatar, Button, IconButton, Stack, Typography, } from '@mui/material';
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import { Avatar, Button, IconButton, Stack, Typography, useMediaQuery, Card, Collapse } from '@mui/material';
+import { KeyboardArrowDown, ThumbUpOffAlt, ThumbDownOffAlt } from '@mui/icons-material';
 import { getTimeAgoString } from '../utils/helper';
 
 const Comment = ({ commentInfo }) => {
@@ -109,7 +108,7 @@ const Comment = ({ commentInfo }) => {
           alignItems='center'
         >
           <IconButton aria-label='ThumbUpOffAlt' sx={{ color: 'white' }}>
-            <ThumbUpOffAltIcon />{' '}
+            <ThumbUpOffAlt />{' '}
             <span
               style={{
                 ml: 0.5,
@@ -123,7 +122,7 @@ const Comment = ({ commentInfo }) => {
             </span>
           </IconButton>
           <IconButton aria-label='ThumbDownOffAlt' sx={{ color: 'white' }}>
-            <ThumbDownOffAltIcon />
+            <ThumbDownOffAlt />
           </IconButton>
           <Button sx={{ color: 'white' }}>Reply</Button>
         </Stack>
@@ -133,7 +132,7 @@ const Comment = ({ commentInfo }) => {
 };
 
 const CommentSection = ({ videoComments }) => {
-  return (
+ return (
     <Stack
       direction='column'
       justifyContent='flex-start'
