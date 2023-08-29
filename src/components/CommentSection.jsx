@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar, Button, IconButton, Stack, Typography, useMediaQuery, Card, Collapse } from '@mui/material';
-import { KeyboardArrowDown, ThumbUpOffAlt, ThumbDownOffAlt } from '@mui/icons-material';
+import { ThumbUpOffAlt, ThumbDownOffAlt } from '@mui/icons-material';
 import { getTimeAgoString } from '../utils/helper';
 
 const Comment = ({ commentInfo }) => {

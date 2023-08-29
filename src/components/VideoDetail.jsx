@@ -5,9 +5,7 @@ import {
   Divider,
   Avatar,
   Stack,
-  Card,
   Typography,
-  IconButton
 } from '@mui/material';
 import {
   ThumbUpOutlined,
