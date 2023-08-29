@@ -4,6 +4,7 @@ import { Box, Typography } from '@mui/material';
 import { Videos } from './';
 import { fetchFromAPI } from '../utils/fetchFromApi';
 const SearchFeed = () => {
+  
   const [videos, setVideos] = useState([])
   const {searchTerm}=useParams();
   useEffect(() => {
@@ -11,6 +12,7 @@ const SearchFeed = () => {
       setVideos(data.items);
     });
   }, [searchTerm])
+
   return (
     <Box p={2} sx={{ overflowY: 'auto', height: '90vh', flex: 2 }}>
       <Typography variant='h4' fontWeight="bold" mb={2} sx={{ color: 'white' }}>Search results for 

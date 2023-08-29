@@ -17,7 +17,6 @@ export const logo = 'https://i.ibb.co/s9Qys2j/logo.png';
 
 export const categories = [
   { name: 'New', icon: <HomeIcon />, },
-  { name: 'JS Mastery', icon: <CodeIcon />, },
   { name: 'Coding', icon: <CodeIcon />, },
   { name: 'ReactJS', icon: <CodeIcon />, },
   { name: 'NextJS', icon: <CodeIcon />, },
@@ -35,7 +34,7 @@ export const categories = [
   { name: 'Crypto', icon: <DeveloperModeIcon />, },
 ];
 
-export const demoThumbnailUrl = 'https://i.ibb.co/G2L2Gwp/API-Course.png';
+export const demoThumbnailUrl = 'https://img.youtube.com/vi/gGzljDgcpz0/hqdefault.jpg';
 export const demoChannelUrl = '/channel/UCsFCXbi87nbGLt9UWmpjo5Q';
 export const demoVideoUrl = '/video/gGzljDgcpz0';
 export const demoChannelTitle = 'MURALI SINGH';

@@ -13,8 +13,7 @@ const ChannelCard = ({channelDetail,marginTop}) => {
     display:'flex',
     flexDirection:'column',
     justifyContent:'center',
-    alignItems:'center',
-    width:{xs:'356px',md:'320px'},
+    width:{xs:'356px',sm:'300px'},
     height:'326px',
     margin: 'auto',
     marginTop,}}>
@@ -23,6 +22,7 @@ const ChannelCard = ({channelDetail,marginTop}) => {
           sx={{display:'flex',
           flexDirection:'column', 
           justifyContent:'center',
+          alignItems:'center',
           textAlign:'center',
           color:'#fff'}}>
             <CardMedia image={channelImage}

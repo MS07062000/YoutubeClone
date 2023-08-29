@@ -39,24 +39,24 @@ const VideoDetail = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        let channelDetailsData;
-        const videoDetailsResponse = await fetchFromAPI(
-          `videos?part=snippet,statistics&id=${videoId}`
-        );
-        const videoDetailsData =
-          videoDetailsResponse && videoDetailsResponse.items
-            ? videoDetailsResponse.items[0]
-            : null;
-        const relatedVideosResponse = await fetchFromAPI(
-          `search?part=snippet&related=${videoId}&type=video`
-        );
-        const relatedVideosData = relatedVideosResponse && relatedVideosResponse.items
-          ? relatedVideosResponse.items
+      let channelDetailsData;
+      const videoDetailsResponse = await fetchFromAPI(
+        `videos?part=snippet,statistics&id=${videoId}`
+      );
+      const videoDetailsData =
+        videoDetailsResponse && videoDetailsResponse.items
+          ? videoDetailsResponse.items[0]
           : null;
+      const relatedVideosResponse = await fetchFromAPI(
+        `search?part=snippet&related=${videoId}&type=video`
+      );
+      const relatedVideosData = relatedVideosResponse && relatedVideosResponse.items
+        ? relatedVideosResponse.items
+        : null;
 
-        if (videoDetailsData != null) {
-          channelId = videoDetailsData.snippet.channelId;
+      if (videoDetailsData != null) {
+        channelId = videoDetailsData.snippet ? videoDetailsData.snippet.channelId : null;
+        if (channelId != null) {
           const channelDetailsResponse = await fetchFromAPI(
             `channels?part=snippet,statistics&id=${channelId}`
           );
@@ -64,25 +64,24 @@ const VideoDetail = () => {
             channelDetailsResponse && channelDetailsResponse.items
               ? channelDetailsResponse.items[0]
               : null;
+        }else{
+          channelDetailsData =null;
         }
-
-        const videoComments = await fetchFromAPI(
-          `commentThreads?part=snippet&videoId=${videoId}&maxResults=100`
-        );
-
-        const fetchedData = {
-          videoDetails: videoDetailsData,
-          relatedVideos: relatedVideosData,
-          channelDetails: channelDetailsData,
-          videoComments: videoComments.items,
-        };
-
-        setVideoInfo(fetchedData);
-      } catch (error) {
-        // Handle errors if necessary
-        return <Loader />;
       }
-    };
+
+      const videoComments = await fetchFromAPI(
+        `commentThreads?part=snippet&videoId=${videoId}&maxResults=100`
+      );
+
+      const fetchedData = {
+        videoDetails: videoDetailsData,
+        relatedVideos: relatedVideosData,
+        channelDetails: channelDetailsData,
+        videoComments: videoComments.items,
+      };
+
+      setVideoInfo(fetchedData);
+    }
 
     fetchData();
   }, [videoId]);
@@ -111,7 +110,7 @@ const VideoDetail = () => {
     return <Loader />;
   } else {
     console.log(isClamped);
-    console.log(videoInfo);
+    // console.log(videoInfo);
     const {
       snippet: {
         channelTitle,
@@ -132,11 +131,7 @@ const VideoDetail = () => {
       <Box minHeight="95vh">
         <Stack direction={{ xs: "column", md: "row", gap: 3 }}>
           <Box>
-            <Box
-              sx={{
-                width: '100%',
-              }}
-            >
+            <Box sx={{ width: '100%' }}>
               <Box sx={{ mx: 2, mt: 1 }}>
                 <ReactPlayer
                   url={`https://www.youtube.com/watch?v=${videoId}`}
@@ -144,12 +139,7 @@ const VideoDetail = () => {
                   controls
                 />
               </Box>
-              <Typography
-                color="#fff"
-                variant="h5"
-                fontWeight="bold"
-                p={2}
-              >
+              <Typography color="#fff" variant="h5" fontWeight="bold" p={2}>
                 {title}
               </Typography>
               <Stack
@@ -159,8 +149,8 @@ const VideoDetail = () => {
                 py={1}
                 px={2}
                 sx={{
-                  alignItems: {xs:'flex-start',lg:'center'},
-                  flexDirection: {xs:'column',lg:'row'}
+                  alignItems: { xs: 'flex-start', lg: 'center' },
+                  flexDirection: { xs: 'column', lg: 'row' }
                 }}
               >
                 <Stack direction="row" spacing={1} alignItems="center">
@@ -294,7 +284,7 @@ const VideoDetail = () => {
                   alignItems="center"
                   sx={{
                     overflowY: { xs: 'scroll', lg: 'hidden' },
-                    overflowX:'hidden'
+                    overflowX: 'hidden'
                   }}
                   height={{ xs: '250px', lg: 'auto' }}
                 >
